@@ -1,17 +1,16 @@
 {
   "name": "welcomebookPhaedra",
   "homepage": "https://diamantedelmar.github.io/welcomebookPhaedra",
-
   "lockfileVersion": 3,
   "requires": true,
   "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-},
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
   "packages": {
     "": {
       "dependencies": {
@@ -583,5 +582,8 @@
         "node": ">= 10.0.0"
       }
     }
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.8"
   }
 }
