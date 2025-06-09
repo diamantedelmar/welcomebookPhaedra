@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Diamante del Mar Phaedra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .main-screen {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .section-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 50;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .section-screen.active {
+            transform: translateX(0);
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .grid-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease-in-out;
+        }
+        .grid-button:hover {
+            transform: scale(1.05);
+            background: white;
+        }
+        .section-header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        .prose-custom p, .prose-custom li {
+            color: #4A5568;
+        }
+        .prose-custom h3 {
+            color: #2D3748;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Main App Container -->
+    <div id="app" class="max-w-md mx-auto min-h-screen main-screen">
+        
+        <!-- Home Screen -->
+        <div id="home-screen" class="p-6">
+            <header class="text-center pt-8 pb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Diamante del Mar</h1>
+                <h2 class="text-xl font-medium text-gray-600">Phaedra</h2>
+                <p class="mt-2 text-gray-500">Your Digital Welcome Book</p>
+            </header>
+
+            <main>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Button: Welcome -->
+                    <button onclick="showSection('welcome-section')" class="grid-button">
+                        <i data-lucide="sun" class="w-10 h-10 text-blue-500 mb-2"></i>
+                        <span class="font-semibold text-gray-700">Welcome</span>
+                    </button>
+                    <!-- Button: Apartment Essentials -->
+                    <button onclick="showSection('essentials-section')" class="grid-button">
+                        <i data-lucide="key-round" class="w-10 h-10 text-blue-500 mb-2"></i>
+                        <span class="font-semibold text-gray-700">Apartment Info</span>
+                    </button>
+                    <!-- Button: Island Guide -->
+                    <button onclick="showSection('guide-section')" class="grid-button">
+                        <i data-lucide="map" class="w-10 h-10 text-blue-500 mb-2"></i>
+                        <span class="font-semibold text-gray-700">Island Guide</span>
+                    </button>
+                    <!-- Button: Navigation -->
+                    <button onclick="showSection('transport-section')" class="grid-button">
+                        <i data-lucide="bus" class="w-10 h-10 text-blue-500 mb-2"></i>
+                        <span class="font-semibold text-gray-700">Getting Around</span>
+                    </button>
+                    <!-- Button: Important Info -->
+                    <button onclick="showSection('important-section')" class="grid-button">
+                        <i data-lucide="siren" class="w-10 h-10 text-blue-500 mb-2"></i>
+                        <span class="font-semibold text-gray-700">Important Info</span>
+                    </button>
+                    <!-- Button: Departure -->
+                    <button onclick="showSection('departure-section')" class="grid-button">
+                        <i data-lucide="log-out" class="w-10 h-10 text-blue-500 mb-2"></i>
+                        <span class="font-semibold text-gray-700">Departure</span>
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Section: Welcome -->
+        <div id="welcome-section" class="section-screen">
+            <header class="section-header p-4 flex items-center shadow-md">
+                <button onclick="goBack()" class="p-2 rounded-full hover:bg-gray-200">
+                    <i data-lucide="arrow-left" class="w-6 h-6 text-gray-700"></i>
+                </button>
+                <h2 class="text-xl font-bold text-gray-800 mx-auto">Welcome to Paradise!</h2>
+            </header>
+            <div class="p-6 prose-custom">
+                <h3 class="text-2xl font-bold mb-4">Kalós órises!</h3>
+                <p class="mb-4">Welcome to Kos, and welcome to Diamante del Mar Phaedra. We are absolutely delighted to host you on this enchanting Dodecanese island. Recently renovated and designed with style and comfort in mind, we hope our home serves as your perfect sanctuary to explore the captivating blend of ancient history, sun-drenched beaches, and vibrant island life that makes Kos so special.</p>
+                <p class="mb-4">Kos invites you to slow down, breathe in the sea air, wander through millennia of history, and savour the simple pleasures. We hope you fall in love with its unique charm just as we have.</p>
+                <h3 class="text-xl font-semibold mt-6 mb-2">About This Guide</h3>
+                <p>Think of this book as your curated introduction to living like a stylish local. We've gathered essential information to help you settle in effortlessly, alongside our personal recommendations for discovering the island's highlights. Now, relax, unwind, and let your Kos story begin!</p>
+            </div>
+        </div>
+
+        <!-- Section: Apartment Essentials -->
+        <div id="essentials-section" class="section-screen">
+            <header class="section-header p-4 flex items-center shadow-md">
+                <button onclick="goBack()" class="p-2 rounded-full hover:bg-gray-200">
+                    <i data-lucide="arrow-left" class="w-6 h-6 text-gray-700"></i>
+                </button>
+                <h2 class="text-xl font-bold text-gray-800 mx-auto">Apartment Info</h2>
+            </header>
+            <div class="p-6 space-y-6">
+                <!-- Address -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="map-pin" class="w-5 h-5 mr-2 text-blue-500"></i>Address</h3>
+                    <p class="text-gray-600">Diamante Del Mar Phaedra</p>
+                    <p class="text-gray-600">Σοφοκλή Βενιζέλου 54 (Sophokli Venizelou 54)</p>
+                    <p class="text-gray-600">Kos Town, 853 00</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Sophokli+Venizelou+54,+Kos" target="_blank" class="inline-block mt-2 text-blue-600 font-semibold hover:underline">Open in Maps</a>
+                </div>
+                <!-- Check-in/out -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="clock" class="w-5 h-5 mr-2 text-blue-500"></i>Check-in & Out</h3>
+                    <p class="text-gray-600"><strong>Check-in:</strong> After 16:00 (4:00 PM)</p>
+                    <p class="text-gray-600"><strong>Lockbox Code:</strong> 1723</p>
+                    <p class="text-gray-600 mt-2"><strong>Check-out:</strong> By 11:00 AM</p>
+                    <p class="text-gray-500 text-sm mt-1">Please leave keys on the dining table.</p>
+                </div>
+                <!-- Wi-Fi -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2 text-blue-500"></i>Wi-Fi Access</h3>
+                    <p class="text-gray-600"><strong>Network:</strong> Phaedra</p>
+                    <div class="flex justify-between items-center mt-1">
+                        <p class="text-gray-600"><strong>Password:</strong> <span id="wifi-password">Phaedra!22420@</span></p>
+                        <button onclick="copyToClipboard('#wifi-password')" class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm font-semibold hover:bg-blue-600">Copy</button>
+                    </div>
+                </div>
+                <!-- House Rules -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="home" class="w-5 h-5 mr-2 text-blue-500"></i>House Rules</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <li><strong>Strictly non-smoking</strong> indoors.</li>
+                        <li><strong>No pets</strong> allowed.</li>
+                        <li>Quiet hours: <strong>22:00 - 07:00</strong>.</li>
+                        <li><strong>No parties</strong> or large gatherings.</li>
+                        <li>Only registered guests may stay overnight.</li>
+                    </ul>
+                </div>
+                <!-- Appliance Manuals -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="blinds" class="w-5 h-5 mr-2 text-blue-500"></i>Appliance Manuals</h3>
+                    <p class="text-gray-600 mb-4">Scan the QR code with your phone's camera to view the manual for each appliance.</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <p class="font-medium text-gray-700">Microwave</p>
+                            <img src="https://placehold.co/150x150/E2E8F0/4A5568?text=SCAN+ME" alt="QR Code for Microwave Manual" class="mx-auto mt-1 rounded-lg">
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">Oven</p>
+                            <img src="https://placehold.co/150x150/E2E8F0/4A5568?text=SCAN+ME" alt="QR Code for Oven Manual" class="mx-auto mt-1 rounded-lg">
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">Nespresso</p>
+                            <img src="https://placehold.co/150x150/E2E8F0/4A5568?text=SCAN+ME" alt="QR Code for Nespresso Manual" class="mx-auto mt-1 rounded-lg">
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">Washing Machine</p>
+                            <img src="https://placehold.co/150x150/E2E8F0/4A5568?text=SCAN+ME" alt="QR Code for Washing Machine Manual" class="mx-auto mt-1 rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Island Guide -->
+        <div id="guide-section" class="section-screen">
+            <header class="section-header p-4 flex items-center shadow-md">
+                <button onclick="goBack()" class="p-2 rounded-full hover:bg-gray-200">
+                    <i data-lucide="arrow-left" class="w-6 h-6 text-gray-700"></i>
+                </button>
+                <h2 class="text-xl font-bold text-gray-800 mx-auto">Island Guide</h2>
+            </header>
+            <div class="p-6 space-y-8">
+                <!-- Host Recommendation -->
+                <div class="card bg-blue-50 border border-blue-200">
+                    <h3 class="font-bold text-xl mb-2 text-blue-800 flex items-center"><i data-lucide="star" class="w-6 h-6 mr-2 text-yellow-500 fill-current"></i>Host's Top Pick: Xasapaki</h3>
+                    <p class="text-blue-700 mb-3">For an unforgettable meal, visit Xasapaki. It's a unique butcher shop and steakhouse where you pick your cut of meat and they grill it to perfection. Their burgers are legendary!</p>
+                    <a href="https://xasapaki.gr/" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700">Visit Website</a>
+                </div>
+
+                <!-- Dining & Coffee -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Dining & Coffee</h3>
+                    <div class="space-y-4">
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Alchimion & The Cup</h4>
+                            <p class="text-gray-600">Your go-to spots for breakfast, brunch, and specialty coffee, located just steps away at Vasileos Pavlou 33.</p>
+                        </div>
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Barbouni & Nick the Fisherman</h4>
+                            <p class="text-gray-600">Top choices for fresh seafood by the water near the port. Book ahead for a table with a view!</p>
+                        </div>
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Patriko</h4>
+                            <p class="text-gray-600">A family-run gem for authentic Greek meze (sharing plates). Try the baked feta with honey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beaches -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Beaches</h3>
+                    <div class="space-y-4">
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Lambi Beach</h4>
+                            <p class="text-gray-600">Your closest neighbour! A popular sandy stretch perfect for a quick swim or a full day of relaxation.</p>
+                        </div>
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Agios Stefanos</h4>
+                            <p class="text-gray-600">Arguably Kos's most photogenic beach, with views of Kastri islet. Great for swimming and photos.</p>
+                        </div>
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Therma Beach</h4>
+                            <p class="text-gray-600">A unique natural spa experience where hot springs flow into the sea. A must-visit!</p>
+                        </div>
+                         <div class="card">
+                            <h4 class="font-semibold text-lg">Paradise Beach</h4>
+                            <p class="text-gray-600">Golden sand and shallow, calm waters make this beach perfect for families and watersports.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History & Villages -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">History & Villages</h3>
+                    <div class="space-y-4">
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">The Asklepion</h4>
+                            <p class="text-gray-600">The island's most important archaeological site. A renowned ancient healing center linked to Hippocrates. Allow at least 1-2 hours.</p>
+                        </div>
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Zia Village</h4>
+                            <p class="text-gray-600">A must-visit mountain village for breathtaking sunset views. Book a table at a taverna in advance.</p>
+                        </div>
+                        <div class="card">
+                            <h4 class="font-semibold text-lg">Neratzia Castle (Castle of the Knights)</h4>
+                            <p class="text-gray-600">An impressive 15th-century castle guarding the harbour entrance. Explore its history and enjoy the views.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section: Transport -->
+        <div id="transport-section" class="section-screen">
+            <header class="section-header p-4 flex items-center shadow-md">
+                <button onclick="goBack()" class="p-2 rounded-full hover:bg-gray-200">
+                    <i data-lucide="arrow-left" class="w-6 h-6 text-gray-700"></i>
+                </button>
+                <h2 class="text-xl font-bold text-gray-800 mx-auto">Getting Around Kos</h2>
+            </header>
+            <div class="p-6 space-y-6">
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="car" class="w-5 h-5 mr-2 text-blue-500"></i>Rental Car / Scooter</h3>
+                    <p class="text-gray-600">Highly recommended for the most freedom to explore remote beaches and villages. Book in advance during summer.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="bus" class="w-5 h-5 mr-2 text-blue-500"></i>KTEL Intercity Buses</h3>
+                    <p class="text-gray-600">An economical way to travel between major towns and resorts. The main station is at 7 Kleopatras Street. Check schedules online at <a href="http://www.ktel-kos.gr" target="_blank" class="text-blue-600 hover:underline">ktel-kos.gr</a>.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="bike" class="w-5 h-5 mr-2 text-blue-500"></i>Cycling</h3>
+                    <p class="text-gray-600">Kos's flat terrain makes cycling a great option for short distances, especially along the coast. Rentals are widely available.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="taxi" class="w-5 h-5 mr-2 text-blue-500"></i>Taxis</h3>
+                    <p class="text-gray-600">Readily available. Find them at ranks or book by phone. Agree on a price for long journeys. Kos Town Radio Taxi: <a href="tel:+302242022777" class="text-blue-600 hover:underline">+30 22420 22777</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Important Info -->
+        <div id="important-section" class="section-screen">
+            <header class="section-header p-4 flex items-center shadow-md">
+                <button onclick="goBack()" class="p-2 rounded-full hover:bg-gray-200">
+                    <i data-lucide="arrow-left" class="w-6 h-6 text-gray-700"></i>
+                </button>
+                <h2 class="text-xl font-bold text-gray-800 mx-auto">Important Info</h2>
+            </header>
+            <div class="p-6 space-y-6">
+                 <!-- Emergency -->
+                <div class="card border-2 border-red-500">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center text-red-600"><i data-lucide="siren" class="w-5 h-5 mr-2"></i>Emergency Numbers</h3>
+                    <p class="text-gray-700 text-lg">For any emergency, call:</p>
+                    <a href="tel:112" class="block text-center my-3 text-3xl font-bold text-red-600 bg-red-100 p-4 rounded-lg tracking-widest">112</a>
+                    <ul class="text-gray-600 space-y-1">
+                        <li><strong>Ambulance:</strong> 166</li>
+                        <li><strong>Police:</strong> 100</li>
+                        <li><strong>Fire Department:</strong> 199</li>
+                    </ul>
+                </div>
+                <!-- Host Contact -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="user" class="w-5 h-5 mr-2 text-blue-500"></i>Host Contact</h3>
+                    <p class="text-gray-600"><strong>Name:</strong> Varthakouris Ioannis</p>
+                    <p class="text-gray-600"><strong>Phone / WhatsApp:</strong></p>
+                     <a href="https://wa.me/306944589632" target="_blank" class="block text-center my-2 text-xl font-semibold text-green-600 bg-green-100 p-3 rounded-lg hover:bg-green-200">+30 6944 589632</a>
+                    <p class="text-sm text-gray-500">WhatsApp is preferred for non-urgent queries (9 AM - 8 PM). Please call for urgent issues.</p>
+                </div>
+                <!-- Nearby Essentials -->
+                <div class="card">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="shopping-cart" class="w-5 h-5 mr-2 text-blue-500"></i>Nearby Essentials</h3>
+                    <p class="text-gray-600"><strong>Supermarket:</strong> AB Vassilopoulos is just a 1-minute walk away for groceries.</p>
+                    <p class="text-gray-600 mt-2"><strong>ATM:</strong> Available at the entrance of the AB Vassilopoulos supermarket.</p>
+                    <p class="text-gray-600 mt-2"><strong>Pharmacy (Φαρμακείο):</strong> Several nearby. Look for a green cross sign. A list of on-duty pharmacies is posted on their doors.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Departure -->
+        <div id="departure-section" class="section-screen">
+            <header class="section-header p-4 flex items-center shadow-md">
+                <button onclick="goBack()" class="p-2 rounded-full hover:bg-gray-200">
+                    <i data-lucide="arrow-left" class="w-6 h-6 text-gray-700"></i>
+                </button>
+                <h2 class="text-xl font-bold text-gray-800 mx-auto">Until Next Time...</h2>
+            </header>
+            <div class="p-6 prose-custom">
+                <h3 class="text-2xl font-bold mb-4">A Fond Farewell</h3>
+                <p class="mb-4">As your time on the beautiful island of Kos draws to a close, we want to extend our sincerest thanks for choosing to stay with us. We truly hope you've had a wonderful and memorable holiday.</p>
+                
+                <div class="card my-6 bg-blue-50">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center"><i data-lucide="check-circle" class="w-5 h-5 mr-2 text-blue-500"></i>Check-out Reminder</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <li>Check-out time is by <strong>11:00 AM</strong>.</li>
+                        <li>Please leave the <strong>keys in the lockbox</strong>.</li>
+                        <li>Ensure all personal belongings are packed.</li>
+                        <li>Turn off all lights and A/C units.</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Share Your Experience</h3>
+                <p>If you enjoyed your stay, we would be incredibly grateful if you could leave a review on the platform you used for booking. Your feedback helps future travellers discover our little piece of paradise.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-2">Stay Connected</h3>
+                <p>Follow us on Instagram <a href="https://www.instagram.com/diamantedelmar.phaedra" target="_blank" class="text-blue-600 hover:underline">@diamantedelmar.phaedra</a> or contact us for future stays at <a href="mailto:diamantedelmarphaedra@gmail.com" class="text-blue-600 hover:underline">diamantedelmarphaedra@gmail.com</a>.</p>
+
+                <p class="mt-8">Thank you once again. We wish you a safe and pleasant journey onwards!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast Notification for Copy -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 transition-opacity duration-300">
+        Password copied to clipboard!
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let currentSection = null;
+        const homeScreen = document.getElementById('home-screen');
+        const sections = document.querySelectorAll('.section-screen');
+
+        // Function to show a section
+        function showSection(sectionId) {
+            homeScreen.style.display = 'none';
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+                currentSection = section;
+                // Scroll to top of the new section
+                section.scrollTop = 0;
+            }
+        }
+
+        // Function to go back to the home screen
+        function goBack() {
+            if (currentSection) {
+                currentSection.classList.remove('active');
+                currentSection = null;
+            }
+            // A short delay to allow the transition to complete
+            setTimeout(() => {
+                 homeScreen.style.display = 'block';
+            }, 300);
+        }
+
+        // Function to copy text to clipboard and show a toast notification
+        function copyToClipboard(elementSelector) {
+            const textToCopy = document.querySelector(elementSelector).innerText;
+            
+            // A temporary textarea is created to execute the copy command
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Function to show a toast notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000); // Hide after 2 seconds
+        }
+
+    </script>
+</body>
+</html>
